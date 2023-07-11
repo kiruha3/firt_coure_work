@@ -14,15 +14,17 @@ public class Main {
         enterEmployer(employee);
         System.out.println("Сумму затрат на зарплаты в месяц: " + summPayDay(employee));
     }
-    public static void enterEmployer (Employee[] employee) {
+
+    public static void enterEmployer(Employee[] employee) {
         for (int i = 0; i < employee.length; i++) {
             System.out.printf("employee[%s] = %s%n", i, employee[i].toString());
         }
     }
-    public static int summPayDay(Employee[] employee){
-        int summ=0;
+
+    public static int summPayDay(Employee[] employee) {
+        int summ = 0;
         for (int i = 0; i < employee.length; i++) {
-            summ+= employee[i].getPayday();
+            summ += employee[i].getPayday();
         }
         return summ;
     }
