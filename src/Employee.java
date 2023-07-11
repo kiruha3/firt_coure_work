@@ -49,11 +49,10 @@ public class Employee {
     }
     @Override
     public String toString() {
-        return "Employee{" +
-                " id= " + getId() +
-                " Ф.И.О " + getName() + '\'' +
-                " " + getSurname() + '\'' +
-                ", " + getPatronymic() + '\'' +
+        return  " id: " + getId() +
+                " Ф.И.О " + getName() +
+                " " + getSurname() +
+                ", " + getPatronymic() +
                 ", отдел" + getDepartment() +
                 ", зарплата " + getPayday();
     }
