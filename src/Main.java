@@ -1,6 +1,5 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
         Employee olga = new Employee("olga", "takayato", "takayatovna", 1, 2500.10);
         Employee vasya = new Employee("vasya", "takayato", "takayatovna", 5, 5000);
         Employee inga = new Employee("olga", "takayato", "takayatovna", 1, 1400);
@@ -14,11 +13,10 @@ public class Main {
         Employee[] employee = new Employee[]{olga, vasya, inga, vitaly, zina, ula, lena, ida, aglaya, zara};
         enterEmployer(employee);
         System.out.println("Сумму затрат на зарплаты в месяц: " + summPayDay(employee));
-        //
     }
     public static void enterEmployer (Employee[] employee) {
         for (int i = 0; i < employee.length; i++) {
-            System.out.printf("employee[%s].toString() = %s%n", i, employee[i].toString());
+            System.out.printf("employee[%s] = %s%n", i, employee[i].toString());
         }
     }
     public static int summPayDay(Employee[] employee){
