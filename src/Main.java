@@ -14,7 +14,6 @@ public class Main {
         Employee zara = new Employee("Зара", "Мальдер", "Ильинична", 3, 3500.1);
         Employee[] employee = new Employee[]{olga, vasya, inga, vitaly, zina, ula, lena, ida, aglaya, zara};
         enterEmployer(employee);
-        double sumPayDayAllEmployee = summPayDay(employee);
         System.out.println("Сумму затрат на зарплаты в месяц: " + summPayDay(employee));
         System.out.println("Минимальный размер зарпалата у сотрудника " + employee[minSalary(employee)].toString());
         System.out.println("Максимальный размер зарпалаты у сотрудника " + employee[maxSalary(employee)].toString());
