@@ -53,7 +53,7 @@ public class Employee {
                 " Ф.И.О " + getName() +
                 " " + getSurname() +
                 ", " + getPatronymic() +
-                ", отдел" + getDepartment() +
+                ", отдел " + getDepartment() +
                 ", зарплата " + getPayday();
     }
 
