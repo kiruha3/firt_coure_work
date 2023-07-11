@@ -13,7 +13,7 @@ public class Main {
         Employee zara = new Employee("zara", "takayato", "takayatovna", 3, 3500.1);
         Employee[] employee = new Employee[]{olga, vasya, inga, vitaly, zina, ula, lena, ida, aglaya, zara};
         enterEmployer(employee);
-        System.out.println("summPayDay(employee) = " + summPayDay(employee));
+        System.out.println("Сумму затрат на зарплаты в месяц: " + summPayDay(employee));
         //
     }
     public static void enterEmployer (Employee[] employee) {
