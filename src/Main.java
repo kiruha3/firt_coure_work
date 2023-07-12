@@ -15,8 +15,8 @@ public class Main {
         Employee[] employee = new Employee[]{olga, vasya, inga, vitaly, zina, ula, lena, ida, aglaya, zara};
         enterEmployer(employee);
         System.out.println("Сумму затрат на зарплаты в месяц: " + summPayDay(employee));
-        System.out.println("Минимальный размер зарпалата у сотрудника " + employee[minSalary(employee)].toString());
-        System.out.println("Максимальный размер зарпалаты у сотрудника " + employee[maxSalary(employee)].toString());
+        System.out.println("Минимальный размер зарпалата у сотрудника " + minSalary(employee).toString());
+        System.out.println("Максимальный размер зарпалаты у сотрудника " + maxSalary(employee).toString());
         System.out.println("Cреднее значение зарплат " + midPayDayPerMonth(employee));
         personalFIO(employee);
     }
@@ -35,28 +35,24 @@ public class Main {
         return summ;
     }
 
-    public static int minSalary(Employee[] employee) {
-        int minEmployeeSalary = 0;
-        double minSalary = employee[0].getPayday();
+    public static Employee minSalary(Employee[] employee) {
+        Employee minSalary = employee[0];
         for (int i = 0; i < employee.length; i++) {
-            if (employee[i].getPayday() < minSalary) {
-                minSalary = employee[i].getPayday();
-                minEmployeeSalary = employee[i].getId();
+            if (employee[i].getPayday() < minSalary.getPayday()) {
+                minSalary = employee[i];
             }
         }
-        return minEmployeeSalary;
+        return minSalary;
     }
 
-    public static int maxSalary(Employee[] employee) {
-        int maxEmployeeSalary = -1;
-        double maxSalary = employee[0].getPayday();
+    public static Employee maxSalary(Employee[] employee) {
+        Employee maxSalary = employee[0];
         for (int i = 0; i < employee.length; i++) {
-            if (employee[i].getPayday() > maxSalary) {
-                maxSalary = employee[i].getPayday();
-                maxEmployeeSalary = employee[i].getId();
+            if (employee[i].getPayday() > maxSalary.getPayday()) {
+                maxSalary = employee[i];
             }
         }
-        return maxEmployeeSalary;
+        return maxSalary;
     }
 
     public static double midPayDayPerMonth(Employee[] employee ){
