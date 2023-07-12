@@ -1,5 +1,68 @@
+import java.rmi.dgc.VMID;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Employee olga = new Employee("Ольга", "Васнецова", "Ильинична", 1, 2500.10);
+        Employee vasya = new Employee("Василий", "Синицин", "Артемьев", 5, 5000);
+        Employee inga = new Employee("Инга", "Третьякова", "Владимировна", 1, 1400.43);
+        Employee vitaly = new Employee("Виталя", "Носков", "Владимирович", 3, 3200.14);
+        Employee zina = new Employee("Зина", "Зинаидов", "Зинаидовна", 1, 1200);
+        Employee ula = new Employee("Уля", "Таккаяко", "Владимировна", 4, 4000.34);
+        Employee lena = new Employee("Лена", "Кудрявцева", "Владимировна", 1, 1400.34);
+        Employee ida = new Employee("Ида", "Горшановна", "Артемьевна", 1, 1000.20);
+        Employee aglaya = new Employee("Аглая", "Осиповна", "Владимировна", 2, 2500.104);
+        Employee zara = new Employee("Зара", "Мальдер", "Ильинична", 3, 3500.1);
+        Employee[] employee = new Employee[]{olga, vasya, inga, vitaly, zina, ula, lena, ida, aglaya, zara};
+        enterEmployer(employee);
+        System.out.println("Сумму затрат на зарплаты в месяц: " + summPayDay(employee));
+        System.out.println("Минимальный размер зарпалата у сотрудника " + minSalary(employee).toString());
+        System.out.println("Максимальный размер зарпалаты у сотрудника " + maxSalary(employee).toString());
+        System.out.println("Cреднее значение зарплат " + midPayDayPerMonth(employee));
+        personalFIO(employee);
     }
+
+    public static void enterEmployer(Employee[] employee) {
+        for (int i = 0; i < employee.length; i++) {
+            System.out.printf("employee[%s] = %s%n", i, employee[i].toString());
+        }
+    }
+
+    public static int summPayDay(Employee[] employee) {
+        int summ = 0;
+        for (int i = 0; i < employee.length; i++) {
+            summ += employee[i].getPayday();
+        }
+        return summ;
+    }
+
+    public static Employee minSalary(Employee[] employee) {
+        Employee minSalary = employee[0];
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getPayday() < minSalary.getPayday()) {
+                minSalary = employee[i];
+            }
+        }
+        return minSalary;
+    }
+
+    public static Employee maxSalary(Employee[] employee) {
+        Employee maxSalary = employee[0];
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getPayday() > maxSalary.getPayday()) {
+                maxSalary = employee[i];
+            }
+        }
+        return maxSalary;
+    }
+
+    public static double midPayDayPerMonth(Employee[] employee) {
+        return summPayDay(employee) / employee.length;
+    }
+
+    public static void personalFIO(Employee[] employees) {
+        for (int i = 0; i < employees.length; i++) {
+            System.out.printf("Фамилия: %s Имя: %s Отчетсво: %s %n", employees[i].getSurname(), employees[i].getName(), employees[i].getPatronymic());
+        }
+    }
+
 }
