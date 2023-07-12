@@ -55,12 +55,13 @@ public class Main {
         return maxSalary;
     }
 
-    public static double midPayDayPerMonth(Employee[] employee ){
+    public static double midPayDayPerMonth(Employee[] employee) {
         return summPayDay(employee) / employee.length;
     }
-    public static void personalFIO(Employee[] employees){
+
+    public static void personalFIO(Employee[] employees) {
         for (int i = 0; i < employees.length; i++) {
-            System.out.printf("Фамилия: %s Имя: %s Отчетсво: %s %n", employees[i].getSurname(),employees[i].getName(), employees[i].getPatronymic());
+            System.out.printf("Фамилия: %s Имя: %s Отчетсво: %s %n", employees[i].getSurname(), employees[i].getName(), employees[i].getPatronymic());
         }
     }
 
