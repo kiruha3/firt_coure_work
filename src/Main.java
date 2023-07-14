@@ -25,6 +25,7 @@ public class Main {
         enterEmployer(employee);
         System.out.println("minSalaryToDepartment(employee,2) = " + minSalaryToDepartment(employee, 1));
         System.out.println("maxSalaryToDepartment(employee,3) = " + maxSalaryToDepartment(employee, 3));
+        System.out.println(String.format("summPayDayToDepartment(employee,3) = %.2f", summPayDayToDepartment(employee, 3)));
 
     }
 
@@ -34,10 +35,20 @@ public class Main {
         }
     }
 
-    public static int summPayDay(Employee[] employee) {
-        int summ = 0;
+    public static double summPayDay(Employee[] employee) {
+        double summ = 0;
         for (int i = 0; i < employee.length; i++) {
             summ += employee[i].getPayday();
+        }
+        return summ;
+    }
+
+    public static double summPayDayToDepartment(Employee[] employee, int department){
+        double summ = 0;
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getDepartment() == department) {
+                summ += employee[i].getPayday();
+            };
         }
         return summ;
     }
