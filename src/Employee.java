@@ -49,7 +49,7 @@ public class Employee {
     }
     @Override
     public String toString() {
-        return String.format("Идентефикатор : %s Ф.И.О %s %s %s, отдел %s, зарплата %.2f",
+        return String.format("Идентефикатор : [%s] | Ф.И.О %s %s %s |, отдел %s, зарплата %.2f",
                 getId(),
                 getName(),
                 getSurname(),
