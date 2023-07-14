@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         Employee olga = new Employee("Ольга", "Васнецова", "Ильинична", 1, 2500.10);
         Employee vasya = new Employee("Василий", "Синицин", "Артемьев", 3, 5000);
-        Employee inga = new Employee("Инга", "Третьякова", "Владимировна", 1, 1400.43);
+        Employee inga = new Employee("Инга", "Третьякова", "Владимировна", 4, 1400.43);
         Employee vitaly = new Employee("Виталя", "Носков", "Владимирович", 3, 3200.14);
         Employee zina = new Employee("Зина", "Зинаидов", "Зинаидовна", 1, 1200);
         Employee ula = new Employee("Уля", "Таккаяко", "Владимировна", 5, 4000.34);
