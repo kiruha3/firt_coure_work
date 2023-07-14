@@ -14,14 +14,16 @@ public class Main {
         Employee zara = new Employee("Зара", "Мальдер", "Ильинична", 3, 3500.1);
         Employee[] employee = new Employee[]{olga, vasya, inga, vitaly, zina, ula, lena, ida, aglaya, zara};
         enterEmployer(employee);
-        System.out.println("Сумму затрат на зарплаты в месяц: " + summPayDay(employee));
-        System.out.println("Минимальный размер зарпалата у сотрудника " + minSalary(employee).toString());
-        System.out.println("Максимальный размер зарпалаты у сотрудника " + maxSalary(employee).toString());
-        System.out.println("Cреднее значение зарплат " + midPayDayPerMonth(employee));
-        personalFIO(employee);
+//        System.out.println("Сумму затрат на зарплаты в месяц: " + summPayDay(employee));
+//        System.out.println("Минимальный размер зарпалата у сотрудника " + minSalary(employee).toString());
+//        System.out.println("Максимальный размер зарпалаты у сотрудника " + maxSalary(employee).toString());
+//        System.out.println("Cреднее значение зарплат " + midPayDayPerMonth(employee));
+//        personalFIO(employee);
         float indexPercentPayday = 0.12f;
+        System.out.println("(\"------\") = " + ("------"));
         indexPayDay(employee, indexPercentPayday);
         enterEmployer(employee);
+        System.out.println("minSalaryToDepartment(employee,2) = " + minSalaryToDepartment(employee, 1));
     }
 
     public static void enterEmployer(Employee[] employee) {
@@ -46,6 +48,26 @@ public class Main {
             }
         }
         return minSalary;
+    }
+
+    public static Employee minSalaryToDepartment(Employee[] employee, int department) {
+        Employee minSalaryToDepartment;
+        int counter=0;
+        while(true){
+            if (employee[counter].getDepartment() == department){
+                minSalaryToDepartment = employee[counter];
+                break;
+            }
+            counter++;
+        }
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getDepartment() == department) {
+                if (employee[i].getPayday() < minSalaryToDepartment.getPayday()) {
+                    minSalaryToDepartment = employee[i];
+                }
+            }
+        }
+        return minSalaryToDepartment;
     }
 
     public static Employee maxSalary(Employee[] employee) {
@@ -73,5 +95,6 @@ public class Main {
             employee[i].setPayday(employee[i].getPayday() * (1 + indexPercent));
         }
     }
+
 
 }
