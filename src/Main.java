@@ -176,7 +176,7 @@ public class Main {
                 }
             }
             return minSalaryToDepartment;
-        }else {
+        } else {
             System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
             return null;
         }
@@ -218,7 +218,7 @@ public class Main {
                 }
             }
             return maxSalaryToDepartment;
-        }else {
+        } else {
             System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
             return null;
         }
@@ -244,7 +244,7 @@ public class Main {
                 }
             }
             return (double) summPayDayToDepartment(employee, department) / counterForMethod;
-        }else {
+        } else {
             System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
             return 0;
         }
@@ -276,7 +276,7 @@ public class Main {
                     employee[i].setPayday(employee[i].getPayday() * (1 + indexPercentToDepartment));
                 }
             }
-        }else System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
+        } else System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
     }
 
 }
