@@ -19,11 +19,14 @@ public class Main {
         System.out.println("Максимальный размер зарпалаты у сотрудника " + maxSalary(employee).toString());
         System.out.println("Cреднее значение зарплат " + midPayDayPerMonth(employee));
         personalFIO(employee);
+        float indexPercentPayday = 0.12f;
+        indexPayDay(employee,indexPercentPayday);
+        enterEmployer(employee);
     }
 
     public static void enterEmployer(Employee[] employee) {
         for (int i = 0; i < employee.length; i++) {
-            System.out.printf("employee[%s] = %s%n", i, employee[i].toString());
+            System.out.printf("Номер %s = %s%n", i, employee[i].toString());
         }
     }
 
@@ -56,12 +59,18 @@ public class Main {
     }
 
     public static double midPayDayPerMonth(Employee[] employee) {
-        return summPayDay(employee) / employee.length;
+        return (double) summPayDay(employee) / employee.length;
     }
 
-    public static void personalFIO(Employee[] employees) {
-        for (int i = 0; i < employees.length; i++) {
-            System.out.printf("Фамилия: %s Имя: %s Отчетсво: %s %n", employees[i].getSurname(), employees[i].getName(), employees[i].getPatronymic());
+    public static void personalFIO(Employee[] employee) {
+        for (int i = 0; i < employee.length; i++) {
+            System.out.printf("Фамилия: %s Имя: %s Отчетсво: %s %n", employee[i].getSurname(), employee[i].getName(), employee[i].getPatronymic());
+        }
+    }
+
+    public static void indexPayDay (Employee[] employee, float indexPercent) {
+        for (int i = 0; i < employee.length; i++) {
+            employee[i].setPayday(employee[i].getPayday()*(1+indexPercent));
         }
     }
 

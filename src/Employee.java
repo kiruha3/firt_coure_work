@@ -49,12 +49,13 @@ public class Employee {
     }
     @Override
     public String toString() {
-        return  " id: " + getId() +
-                " Ф.И.О " + getName() +
-                " " + getSurname() +
-                ", " + getPatronymic() +
-                ", отдел " + getDepartment() +
-                ", зарплата " + getPayday();
+        return String.format("Идентефикатор : %s Ф.И.О %s %s %s, отдел %s, зарплата %.2f",
+                getId(),
+                getName(),
+                getSurname(),
+                getPatronymic(),
+                getDepartment(),
+                getPayday() );
     }
 
 
