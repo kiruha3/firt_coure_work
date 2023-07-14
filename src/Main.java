@@ -247,6 +247,8 @@ public class Main {
         } else {
             System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
             return 0;
+
+
         }
     }
 
