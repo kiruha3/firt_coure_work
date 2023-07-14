@@ -26,7 +26,10 @@ public class Main {
         System.out.println("minSalaryToDepartment(employee,2) = " + minSalaryToDepartment(employee, 1));
         System.out.println("maxSalaryToDepartment(employee,3) = " + maxSalaryToDepartment(employee, 3));
         System.out.println(String.format("summPayDayToDepartment(employee,3) = %.2f", summPayDayToDepartment(employee, 3)));
-        System.out.println(String.format("midPayDayPerMonthToDepartment(employee,3) = %.2f", midPayDayPerMonthToDepartment(employee, 3) ));
+        System.out.println(String.format("midPayDayPerMonthToDepartment(employee,3) = %.2f", midPayDayPerMonthToDepartment(employee, 3)));
+        float indexPercentPaydayToDepartment= 0.20f;
+        indexPayDaytoDepartment(employee,indexPercentPaydayToDepartment,3);
+        enterEmployer(employee);
     }
 
     public static void enterEmployer(Employee[] employee) {
@@ -140,5 +143,13 @@ public class Main {
         }
     }
 
+    public static void indexPayDaytoDepartment(Employee[] employee, float indexPercentToDepartment, int department) {
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getDepartment() == department) {
+                employee[i].setPayday(employee[i].getPayday() * (1 + indexPercentToDepartment));
+            }
+
+        }
+    }
 
 }
