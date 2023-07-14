@@ -3,7 +3,7 @@ import java.rmi.dgc.VMID;
 public class Main {
     public static void main(String[] args) {
         Employee olga = new Employee("Ольга", "Васнецова", "Ильинична", 1, 2500.10);
-        Employee vasya = new Employee("Василий", "Синицин", "Артемьев", 5, 5000);
+        Employee vasya = new Employee("Василий", "Синицин", "Артемьев", 3, 5000);
         Employee inga = new Employee("Инга", "Третьякова", "Владимировна", 1, 1400.43);
         Employee vitaly = new Employee("Виталя", "Носков", "Владимирович", 3, 3200.14);
         Employee zina = new Employee("Зина", "Зинаидов", "Зинаидовна", 1, 1200);
@@ -24,6 +24,8 @@ public class Main {
         indexPayDay(employee, indexPercentPayday);
         enterEmployer(employee);
         System.out.println("minSalaryToDepartment(employee,2) = " + minSalaryToDepartment(employee, 1));
+        System.out.println("maxSalaryToDepartment(employee,3) = " + maxSalaryToDepartment(employee, 3));
+
     }
 
     public static void enterEmployer(Employee[] employee) {
@@ -78,6 +80,26 @@ public class Main {
             }
         }
         return maxSalary;
+    }
+
+    public static Employee maxSalaryToDepartment(Employee[] employee, int department) {
+        Employee maxSalaryToDepartment;
+        int counter=0;
+        while(true){
+            if (employee[counter].getDepartment() == department){
+                maxSalaryToDepartment = employee[counter];
+                break;
+            }
+            counter++;
+        }
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getDepartment() == department) {
+                if (employee[i].getPayday() > maxSalaryToDepartment.getPayday()) {
+                    maxSalaryToDepartment = employee[i];
+                }
+            }
+        }
+        return maxSalaryToDepartment;
     }
 
     public static double midPayDayPerMonth(Employee[] employee) {
