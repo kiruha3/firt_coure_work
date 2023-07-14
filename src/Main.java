@@ -20,7 +20,7 @@ public class Main {
         System.out.println("Cреднее значение зарплат " + midPayDayPerMonth(employee));
         personalFIO(employee);
         float indexPercentPayday = 0.12f;
-        indexPayDay(employee,indexPercentPayday);
+        indexPayDay(employee, indexPercentPayday);
         enterEmployer(employee);
     }
 
@@ -68,9 +68,9 @@ public class Main {
         }
     }
 
-    public static void indexPayDay (Employee[] employee, float indexPercent) {
+    public static void indexPayDay(Employee[] employee, float indexPercent) {
         for (int i = 0; i < employee.length; i++) {
-            employee[i].setPayday(employee[i].getPayday()*(1+indexPercent));
+            employee[i].setPayday(employee[i].getPayday() * (1 + indexPercent));
         }
     }
 
