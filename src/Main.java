@@ -19,28 +19,50 @@ public class Main {
 //        System.out.println("Максимальный размер зарпалаты у сотрудника " + maxSalary(employee).toString());
 //        System.out.println("Cреднее значение зарплат " + midPayDayPerMonth(employee));
 //        personalFIO(employee);
+        System.out.println("");
         float indexPercentPayday = 0.12f;
-        System.out.println("------");
+        System.out.println("------Индексация всех сотрудников на "
+                + (indexPercentPayday * 100) + " процентов ");
         indexPayDay(employee, indexPercentPayday);
         enterEmployer(employee);
 
-        int departmentForTest = 4;
+        int departmentForTest = 3;
         System.out.println("------");
         System.out.println("Минимальная зп - minSalaryToDepartment(employee,departmentForTest) = " + minSalaryToDepartment(employee, departmentForTest));
+        System.out.println("");
         System.out.println("Максимальная зп - maxSalaryToDepartment(employee,departmentForTest) = " + maxSalaryToDepartment(employee, departmentForTest));
+        System.out.println("");
         System.out.println(String.format("Сумма затрат на отдел по зп - summPayDayToDepartment(employee, %s) = %.2f", departmentForTest, summPayDayToDepartment(employee, departmentForTest)));
+        System.out.println("");
         System.out.println(String.format("Средняя зарплата по отделу - midPayDayPerMonthToDepartment(employee, %s) = %.2f", departmentForTest, midPayDayPerMonthToDepartment(employee, departmentForTest)));
-        System.out.println("------");
-        float indexPercentPaydayToDepartment = 0.20f;
 
+        float indexPercentPaydayToDepartment = 0.20f;
+        System.out.println("------Индексация " + departmentForTest + "-того отдела на "
+                + (indexPercentPaydayToDepartment * 100) + " процентов ");
         indexPayDaytoDepartment(employee, indexPercentPaydayToDepartment, departmentForTest);
         enterEmployerWithoutDepartment(employee, departmentForTest);
-        System.out.println("-----");
+        System.out.println("");
         double payDayLessThenNumber = 3000.50;
+        System.out.println("Всех сотрудников с зарплатой меньше числа " + payDayLessThenNumber);
         double payDayMoreOrEquareThenNumber = 3100.50;
         findAllEmployeeLessThenNumber(employee, payDayLessThenNumber);
+        System.out.println("");
+        System.out.println("Всех сотрудников с зарплатой больше ли равной числу " + payDayMoreOrEquareThenNumber);
+        findAllEmployeeMoreOrEquareThenNumber(employee, payDayMoreOrEquareThenNumber);
 
+    }
 
+    private static void findAllEmployeeMoreOrEquareThenNumber(Employee[] employee, double payDayMoreOrEquareThenNumber) {
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getPayday() >= payDayMoreOrEquareThenNumber) {
+                System.out.printf("Айди :%s|Ф.И.О - %s %s %s| Зарплата :%.2f%n",
+                        employee[i].getId(),
+                        employee[i].getName(),
+                        employee[i].getSurname(),
+                        employee[i].getPatronymic(),
+                        employee[i].getPayday());
+            }
+        }
     }
 
     private static void findAllEmployeeLessThenNumber(Employee[] employee, double payDayLessThenNumber) {
@@ -64,17 +86,27 @@ public class Main {
     }
 
     private static void enterEmployerWithoutDepartment(Employee[] employee, int department) {
-        System.out.printf("Сотрудники департамента №%s%n", department);
+        int counter = 0;
         for (int i = 0; i < employee.length; i++) {
             if (employee[i].getDepartment() == department) {
-                System.out.printf("Айди :%s|Ф.И.О - %s %s %s| Зарплата :%.2f%n",
-                        employee[i].getId(),
-                        employee[i].getName(),
-                        employee[i].getSurname(),
-                        employee[i].getPatronymic(),
-                        employee[i].getPayday());
+                counter++;
+                break;
             }
         }
+        if (counter > 0) {
+            System.out.printf("Сотрудники департамента №%s%n", department);
+            for (int i = 0; i < employee.length; i++) {
+                if (employee[i].getDepartment() == department) {
+                    System.out.printf("Айди :%s|Ф.И.О - %s %s %s| Зарплата :%.2f%n",
+                            employee[i].getId(),
+                            employee[i].getName(),
+                            employee[i].getSurname(),
+                            employee[i].getPatronymic(),
+                            employee[i].getPayday());
+                }
+            }
+        } else System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
+
     }
 
 
@@ -87,13 +119,25 @@ public class Main {
     }
 
     public static double summPayDayToDepartment(Employee[] employee, int department) {
-        double summ = 0;
+        int counter = 0;
         for (int i = 0; i < employee.length; i++) {
             if (employee[i].getDepartment() == department) {
-                summ += employee[i].getPayday();
+                counter++;
+                break;
             }
         }
-        return summ;
+        if (counter > 0) {
+            double summ = 0;
+            for (int i = 0; i < employee.length; i++) {
+                if (employee[i].getDepartment() == department) {
+                    summ += employee[i].getPayday();
+                }
+            }
+            return summ;
+        } else {
+            System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
+            return 0;
+        }
     }
 
     public static Employee minSalary(Employee[] employee) {
@@ -107,23 +151,35 @@ public class Main {
     }
 
     public static Employee minSalaryToDepartment(Employee[] employee, int department) {
-        Employee minSalaryToDepartment;
         int counter = 0;
-        while (true) {
-            if (employee[counter].getDepartment() == department) {
-                minSalaryToDepartment = employee[counter];
-                break;
-            }
-            counter++;
-        }
         for (int i = 0; i < employee.length; i++) {
             if (employee[i].getDepartment() == department) {
-                if (employee[i].getPayday() < minSalaryToDepartment.getPayday()) {
-                    minSalaryToDepartment = employee[i];
-                }
+                counter++;
+                break;
             }
         }
-        return minSalaryToDepartment;
+        if (counter > 0) {
+            Employee minSalaryToDepartment;
+            int counterFormethod = 0;
+            while (true) {
+                if (employee[counterFormethod].getDepartment() == department) {
+                    minSalaryToDepartment = employee[counterFormethod];
+                    break;
+                }
+                counterFormethod++;
+            }
+            for (int i = 0; i < employee.length; i++) {
+                if (employee[i].getDepartment() == department) {
+                    if (employee[i].getPayday() < minSalaryToDepartment.getPayday()) {
+                        minSalaryToDepartment = employee[i];
+                    }
+                }
+            }
+            return minSalaryToDepartment;
+        }else {
+            System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
+            return null;
+        }
     }
 
     public static Employee maxSalary(Employee[] employee) {
@@ -137,23 +193,35 @@ public class Main {
     }
 
     public static Employee maxSalaryToDepartment(Employee[] employee, int department) {
-        Employee maxSalaryToDepartment;
         int counter = 0;
-        while (true) {
-            if (employee[counter].getDepartment() == department) {
-                maxSalaryToDepartment = employee[counter];
-                break;
-            }
-            counter++;
-        }
         for (int i = 0; i < employee.length; i++) {
             if (employee[i].getDepartment() == department) {
-                if (employee[i].getPayday() > maxSalaryToDepartment.getPayday()) {
-                    maxSalaryToDepartment = employee[i];
-                }
+                counter++;
+                break;
             }
         }
-        return maxSalaryToDepartment;
+        if (counter > 0) {
+            Employee maxSalaryToDepartment;
+            int counterForMethod = 0;
+            while (true) {
+                if (employee[counterForMethod].getDepartment() == department) {
+                    maxSalaryToDepartment = employee[counterForMethod];
+                    break;
+                }
+                counterForMethod++;
+            }
+            for (int i = 0; i < employee.length; i++) {
+                if (employee[i].getDepartment() == department) {
+                    if (employee[i].getPayday() > maxSalaryToDepartment.getPayday()) {
+                        maxSalaryToDepartment = employee[i];
+                    }
+                }
+            }
+            return maxSalaryToDepartment;
+        }else {
+            System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
+            return null;
+        }
     }
 
     public static double midPayDayPerMonth(Employee[] employee) {
@@ -165,9 +233,21 @@ public class Main {
         for (int i = 0; i < employee.length; i++) {
             if (employee[i].getDepartment() == department) {
                 counter++;
+                break;
             }
         }
-        return (double) summPayDayToDepartment(employee, department) / counter;
+        if (counter > 0) {
+            int counterForMethod = 0;
+            for (int i = 0; i < employee.length; i++) {
+                if (employee[i].getDepartment() == department) {
+                    counterForMethod++;
+                }
+            }
+            return (double) summPayDayToDepartment(employee, department) / counterForMethod;
+        }else {
+            System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
+            return 0;
+        }
     }
 
     public static void personalFIO(Employee[] employee) {
@@ -183,12 +263,20 @@ public class Main {
     }
 
     public static void indexPayDaytoDepartment(Employee[] employee, float indexPercentToDepartment, int department) {
+        int counter = 0;
         for (int i = 0; i < employee.length; i++) {
             if (employee[i].getDepartment() == department) {
-                employee[i].setPayday(employee[i].getPayday() * (1 + indexPercentToDepartment));
+                counter++;
+                break;
             }
-
         }
+        if (counter > 0) {
+            for (int i = 0; i < employee.length; i++) {
+                if (employee[i].getDepartment() == department) {
+                    employee[i].setPayday(employee[i].getPayday() * (1 + indexPercentToDepartment));
+                }
+            }
+        }else System.out.println("Ошибка! перепроверьте данные! В данном отделе нет сотруднков");
     }
 
 }
