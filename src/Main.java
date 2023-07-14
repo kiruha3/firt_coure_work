@@ -26,7 +26,7 @@ public class Main {
         System.out.println("minSalaryToDepartment(employee,2) = " + minSalaryToDepartment(employee, 1));
         System.out.println("maxSalaryToDepartment(employee,3) = " + maxSalaryToDepartment(employee, 3));
         System.out.println(String.format("summPayDayToDepartment(employee,3) = %.2f", summPayDayToDepartment(employee, 3)));
-
+        System.out.println(String.format("midPayDayPerMonthToDepartment(employee,3) = %.2f", midPayDayPerMonthToDepartment(employee, 3) ));
     }
 
     public static void enterEmployer(Employee[] employee) {
@@ -43,12 +43,13 @@ public class Main {
         return summ;
     }
 
-    public static double summPayDayToDepartment(Employee[] employee, int department){
+    public static double summPayDayToDepartment(Employee[] employee, int department) {
         double summ = 0;
         for (int i = 0; i < employee.length; i++) {
             if (employee[i].getDepartment() == department) {
                 summ += employee[i].getPayday();
-            };
+            }
+            ;
         }
         return summ;
     }
@@ -65,9 +66,9 @@ public class Main {
 
     public static Employee minSalaryToDepartment(Employee[] employee, int department) {
         Employee minSalaryToDepartment;
-        int counter=0;
-        while(true){
-            if (employee[counter].getDepartment() == department){
+        int counter = 0;
+        while (true) {
+            if (employee[counter].getDepartment() == department) {
                 minSalaryToDepartment = employee[counter];
                 break;
             }
@@ -95,9 +96,9 @@ public class Main {
 
     public static Employee maxSalaryToDepartment(Employee[] employee, int department) {
         Employee maxSalaryToDepartment;
-        int counter=0;
-        while(true){
-            if (employee[counter].getDepartment() == department){
+        int counter = 0;
+        while (true) {
+            if (employee[counter].getDepartment() == department) {
                 maxSalaryToDepartment = employee[counter];
                 break;
             }
@@ -115,6 +116,16 @@ public class Main {
 
     public static double midPayDayPerMonth(Employee[] employee) {
         return (double) summPayDay(employee) / employee.length;
+    }
+
+    public static double midPayDayPerMonthToDepartment(Employee[] employee, int department) {
+        int counter = 0;
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getDepartment() == department) {
+                counter++;
+            }
+        }
+        return (double) summPayDayToDepartment(employee, department) / counter;
     }
 
     public static void personalFIO(Employee[] employee) {
