@@ -7,7 +7,7 @@ public class Main {
         Employee inga = new Employee("Инга", "Третьякова", "Владимировна", 1, 1400.43);
         Employee vitaly = new Employee("Виталя", "Носков", "Владимирович", 3, 3200.14);
         Employee zina = new Employee("Зина", "Зинаидов", "Зинаидовна", 1, 1200);
-        Employee ula = new Employee("Уля", "Таккаяко", "Владимировна", 4, 4000.34);
+        Employee ula = new Employee("Уля", "Таккаяко", "Владимировна", 5, 4000.34);
         Employee lena = new Employee("Лена", "Кудрявцева", "Владимировна", 1, 1400.34);
         Employee ida = new Employee("Ида", "Горшановна", "Артемьевна", 1, 1000.20);
         Employee aglaya = new Employee("Аглая", "Осиповна", "Владимировна", 2, 2500.104);
@@ -20,21 +20,40 @@ public class Main {
 //        System.out.println("Cреднее значение зарплат " + midPayDayPerMonth(employee));
 //        personalFIO(employee);
         float indexPercentPayday = 0.12f;
-        System.out.println("(\"------\") = " + ("------"));
+        System.out.println("------");
         indexPayDay(employee, indexPercentPayday);
         enterEmployer(employee);
 
-        int departmentForTest = 3;
-
-        System.out.println("minSalaryToDepartment(employee,2) = " + minSalaryToDepartment(employee, departmentForTest));
-        System.out.println("maxSalaryToDepartment(employee,3) = " + maxSalaryToDepartment(employee, departmentForTest));
-        System.out.println(String.format("summPayDayToDepartment(employee,3) = %.2f", summPayDayToDepartment(employee, departmentForTest)));
-        System.out.println(String.format("midPayDayPerMonthToDepartment(employee,3) = %.2f", midPayDayPerMonthToDepartment(employee, departmentForTest)));
-
+        int departmentForTest = 4;
+        System.out.println("------");
+        System.out.println("Минимальная зп - minSalaryToDepartment(employee,departmentForTest) = " + minSalaryToDepartment(employee, departmentForTest));
+        System.out.println("Максимальная зп - maxSalaryToDepartment(employee,departmentForTest) = " + maxSalaryToDepartment(employee, departmentForTest));
+        System.out.println(String.format("Сумма затрат на отдел по зп - summPayDayToDepartment(employee, %s) = %.2f", departmentForTest, summPayDayToDepartment(employee, departmentForTest)));
+        System.out.println(String.format("Средняя зарплата по отделу - midPayDayPerMonthToDepartment(employee, %s) = %.2f", departmentForTest, midPayDayPerMonthToDepartment(employee, departmentForTest)));
+        System.out.println("------");
         float indexPercentPaydayToDepartment = 0.20f;
 
         indexPayDaytoDepartment(employee, indexPercentPaydayToDepartment, departmentForTest);
         enterEmployerWithoutDepartment(employee, departmentForTest);
+        System.out.println("-----");
+        double payDayLessThenNumber = 3000.50;
+        double payDayMoreOrEquareThenNumber = 3100.50;
+        findAllEmployeeLessThenNumber(employee, payDayLessThenNumber);
+
+
+    }
+
+    private static void findAllEmployeeLessThenNumber(Employee[] employee, double payDayLessThenNumber) {
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getPayday() < payDayLessThenNumber) {
+                System.out.printf("Айди :%s|Ф.И.О - %s %s %s| Зарплата :%.2f%n",
+                        employee[i].getId(),
+                        employee[i].getName(),
+                        employee[i].getSurname(),
+                        employee[i].getPatronymic(),
+                        employee[i].getPayday());
+            }
+        }
     }
 
 
@@ -45,7 +64,7 @@ public class Main {
     }
 
     private static void enterEmployerWithoutDepartment(Employee[] employee, int department) {
-        System.out.printf("Сотрудники департамента №%s%n",department);
+        System.out.printf("Сотрудники департамента №%s%n", department);
         for (int i = 0; i < employee.length; i++) {
             if (employee[i].getDepartment() == department) {
                 System.out.printf("Айди :%s|Ф.И.О - %s %s %s| Зарплата :%.2f%n",
@@ -73,7 +92,6 @@ public class Main {
             if (employee[i].getDepartment() == department) {
                 summ += employee[i].getPayday();
             }
-            ;
         }
         return summ;
     }
