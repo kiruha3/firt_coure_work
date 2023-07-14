@@ -23,20 +23,41 @@ public class Main {
         System.out.println("(\"------\") = " + ("------"));
         indexPayDay(employee, indexPercentPayday);
         enterEmployer(employee);
-        System.out.println("minSalaryToDepartment(employee,2) = " + minSalaryToDepartment(employee, 1));
-        System.out.println("maxSalaryToDepartment(employee,3) = " + maxSalaryToDepartment(employee, 3));
-        System.out.println(String.format("summPayDayToDepartment(employee,3) = %.2f", summPayDayToDepartment(employee, 3)));
-        System.out.println(String.format("midPayDayPerMonthToDepartment(employee,3) = %.2f", midPayDayPerMonthToDepartment(employee, 3)));
-        float indexPercentPaydayToDepartment= 0.20f;
-        indexPayDaytoDepartment(employee,indexPercentPaydayToDepartment,3);
-        enterEmployer(employee);
+
+        int departmentForTest = 3;
+
+        System.out.println("minSalaryToDepartment(employee,2) = " + minSalaryToDepartment(employee, departmentForTest));
+        System.out.println("maxSalaryToDepartment(employee,3) = " + maxSalaryToDepartment(employee, departmentForTest));
+        System.out.println(String.format("summPayDayToDepartment(employee,3) = %.2f", summPayDayToDepartment(employee, departmentForTest)));
+        System.out.println(String.format("midPayDayPerMonthToDepartment(employee,3) = %.2f", midPayDayPerMonthToDepartment(employee, departmentForTest)));
+
+        float indexPercentPaydayToDepartment = 0.20f;
+
+        indexPayDaytoDepartment(employee, indexPercentPaydayToDepartment, departmentForTest);
+        enterEmployerWithoutDepartment(employee, departmentForTest);
     }
+
 
     public static void enterEmployer(Employee[] employee) {
         for (int i = 0; i < employee.length; i++) {
             System.out.printf("Номер %s = %s%n", i, employee[i].toString());
         }
     }
+
+    private static void enterEmployerWithoutDepartment(Employee[] employee, int department) {
+        System.out.printf("Сотрудники департамента №%s%n",department);
+        for (int i = 0; i < employee.length; i++) {
+            if (employee[i].getDepartment() == department) {
+                System.out.printf("Айди :%s|Ф.И.О - %s %s %s| Зарплата :%.2f%n",
+                        employee[i].getId(),
+                        employee[i].getName(),
+                        employee[i].getSurname(),
+                        employee[i].getPatronymic(),
+                        employee[i].getPayday());
+            }
+        }
+    }
+
 
     public static double summPayDay(Employee[] employee) {
         double summ = 0;
