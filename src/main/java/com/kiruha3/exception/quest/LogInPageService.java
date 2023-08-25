@@ -41,7 +41,9 @@ public class LogInPageService implements LogInPageInterface {
     }
 
     @Override
-    public String getCheck(String checkLog, String checkPassword, String passToPassconfirm) {
-        return checkLog(checkLog).toString() + checkPassword(checkPassword).toString() + passToPassconfirm(checkPassword, passToPassconfirm).toString();
+    public void  getCheck(String checkLog, String checkPassword, String passToPassconfirm) {
+        checkLog(checkLog);
+        checkPassword(checkPassword);
+        passToPassconfirm(checkPassword, passToPassconfirm);
     }
 }
