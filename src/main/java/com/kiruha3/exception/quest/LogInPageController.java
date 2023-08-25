@@ -17,7 +17,7 @@ public class LogInPageController {
         return "Задайте логин пароль и повторите пароль";
     }
 
-    @GetMapping(path = "/LogIn")
+        @GetMapping(path = "/login")
     public Boolean logIn(@RequestParam(required = false) String login,
                         @RequestParam String password,
                         @RequestParam String confirmPassword) {

@@ -2,27 +2,34 @@ package com.kiruha3.exception.quest;
 
 import org.springframework.stereotype.Service;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 @Service
-public class LogInPageService implements LogInPageInterface{
+public class LogInPageService implements LogInPageInterface {
 
 
     @Override
     public Boolean checkLog(String login) {
-        return null;
+        Pattern pattern = Pattern.compile("[a-zA-Z0-9_]{1,20}");
+        Matcher matcher = pattern.matcher(login);
+        return matcher.matches();
     }
 
     @Override
     public Boolean checkPassword(String password) {
-        return null;
+        return true;
     }
 
     @Override
     public Boolean passToPassconfirm(String password, String confirmPassword) {
-        return null;
+        return true;
     }
 
     @Override
     public Boolean getCheck(String checkLog, String checkPassword, String passToPassconfirm) {
-        return null;
+        return checkLog(checkLog) && checkPassword(checkPassword) && passToPassconfirm(checkPassword, passToPassconfirm);
+
+
     }
 }
