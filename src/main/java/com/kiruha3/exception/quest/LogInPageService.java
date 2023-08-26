@@ -25,8 +25,8 @@ public class LogInPageService implements LogInPageInterface {
     @Override
     public Boolean checkPassword(String password) {
         Pattern pattern = Pattern.compile("[a-zA-Z0-9_]{1,20}");
-        Matcher matcher = pattern.matcher(password);
-        if (!matcher.matches()){
+       // Matcher matcher = pattern.matcher(password);
+        if (!pattern.matcher(password).matches()){
             throw new WrongPasswordException();
         }else
             return true;
