@@ -1,7 +1,7 @@
-package com.kiruha3.exception.quest;
+package com.kiruha3.list.quest;
 
-import com.kiruha3.exception.selfexceptions.WrongLoginException;
-import com.kiruha3.exception.selfexceptions.WrongPasswordException;
+import com.kiruha3.list.selfexceptions.WrongLoginException;
+import com.kiruha3.list.selfexceptions.WrongPasswordException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;

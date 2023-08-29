@@ -1,4 +1,4 @@
-package com.kiruha3.exception.quest;
+package com.kiruha3.list.quest;
 
 public interface LogInPageInterface {
     Boolean checkLog(String login);
