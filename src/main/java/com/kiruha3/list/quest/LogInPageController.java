@@ -14,10 +14,10 @@ public class LogInPageController {
         this.logInPageService = logInPageService;
     }
 
-    @GetMapping()
-    public String logInPage() {
-        return "Задайте логин пароль и повторите пароль";
-    }
+//    @GetMapping()
+//    public String logInPage() {
+//        return "Задайте логин пароль и повторите пароль";
+//    }
 
         @GetMapping(path = "/login")
     public String logIn(@RequestParam(required = false) String login,
