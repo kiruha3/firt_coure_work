@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class EmployeeServiceImpl implements EmployeeInterface {
     private final EmployeeService employeeService;
+
     public EmployeeServiceImpl(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
@@ -24,8 +25,9 @@ public class EmployeeServiceImpl implements EmployeeInterface {
 
     @Override
     public void removeEmployee(Integer i) {
-        if (employeeService.employee.get(i) != null) {
-            employeeService.employee.remove(i);
+        if (employeeService.employee.size() <= i) {
+           Employee removeEmpl = employeeService.employee.get(i);
+           employeeService.employee.remove(removeEmpl);
         } else {
             throw new EmployeeNotFoundException();
         }
@@ -33,10 +35,10 @@ public class EmployeeServiceImpl implements EmployeeInterface {
 
     @Override
     public Employee findEmployee(Integer i) {
-        if (employeeService.employee.get(i) != null) {
-            return employeeService.employee.get(i);
-        } else {
+        if (employeeService.employee.size() <= i) {
             throw new EmployeeNotFoundException();
+        } else {
+            return employeeService.employee.get(i);
         }
 
     }

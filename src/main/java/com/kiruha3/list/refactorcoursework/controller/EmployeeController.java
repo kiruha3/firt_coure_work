@@ -21,7 +21,7 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/add")
-    public String addEmployer(@RequestParam("name") String name,
+    public String addEmployer(@RequestParam(value = "name", required = false) String name,
                               @RequestParam("surname") String surname) {
         try {
             Employee employee = new Employee(name, surname);
@@ -33,7 +33,7 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/find")
-    public String allEmployer(@RequestParam("num") Integer i) {
+    public String allEmployer(@RequestParam(value = "num",required = false) Integer i) {
         try {
             employeeServiceImpl.findEmployee(i);
             String str = employeeServiceImpl.findEmployee(i).toString();
@@ -44,7 +44,7 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/remove")
-    public String removeEmployer(@RequestParam("num") Integer i) {
+    public String removeEmployer(@RequestParam(value = "num",required = false) Integer i) {
         try {
             employeeServiceImpl.removeEmployee(i);
             return "Успешно удален пользователем под номером " + i;
