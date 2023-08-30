@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        
+
         //enterEmployer(employeeService.employee);
 //        EmployeeService employeeService = new EmployeeService();
 //        //employeeService.employee.remove(2);
@@ -20,7 +20,6 @@ public class Main {
             System.out.printf("Номер %s = %s%n", i, employee.get(i).toString());
         }
     }
-
 
 
     public static void personalFIO(List<Employee> employee) {
