@@ -5,7 +5,13 @@ import com.kiruha3.list.refactorcoursework.Employee;
 public interface EmployeeInterface {
     void addEmployee(Employee employee);
 
-    void removeEmployee(Integer i);
+    void removeToNumEmployee(Integer i);
 
-    Employee findEmployee(Integer i);
+    Employee findToNumEmployee(Integer i);
+
+    String allEmployee();
+
+    String findEmployee(Employee employee);
+
+    String removeEmployee(Employee employee);
 }

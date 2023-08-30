@@ -1,12 +1,15 @@
 package com.kiruha3.list.refactorcoursework.controller;
 
 import com.kiruha3.list.refactorcoursework.Employee;
+import com.kiruha3.list.selfexceptions.EmployeeAlreadyAddedException;
 import com.kiruha3.list.selfexceptions.EmployeeNotFoundException;
 import com.kiruha3.list.selfexceptions.EmployeeStorageIsFullException;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequestMapping("/employee")
 @RestController
 public class EmployeeController {
     private final EmployeeServiceImpl employeeServiceImpl;
@@ -21,36 +24,65 @@ public class EmployeeController {
     }
 
     @GetMapping(path = "/add")
-    public String addEmployer(@RequestParam(value = "name", required = false) String name,
-                              @RequestParam("surname") String surname) {
+    public String addEmployer(@RequestParam(value = "firstName", required = false) String firstName,
+                              @RequestParam("lastName") String lastName) {
         try {
-            Employee employee = new Employee(name, surname);
+            Employee employee = new Employee(firstName, lastName);
             employeeServiceImpl.addEmployee(employee);
             return "Сотрудник успешно добавлен ";
         } catch (EmployeeStorageIsFullException e) {
-            return "что-то не так";
+            return "ArrayIsFull ";
+        } catch (EmployeeAlreadyAddedException e) {
+            return "EmployeeAlreadyAdded";
+        }
+    }
+
+    @GetMapping(path = "/findToNum")
+    public String findToNumEmployer(@RequestParam(value = "num", required = false) Integer i) {
+        try {
+            employeeServiceImpl.findToNumEmployee(i);
+            String str = employeeServiceImpl.findToNumEmployee(i).toString();
+            return "пользователь под номером " + i + "\n" + str;
+        } catch (EmployeeNotFoundException e) {
+            return "EmployeeNotFound" + i;
         }
     }
 
     @GetMapping(path = "/find")
-    public String allEmployer(@RequestParam(value = "num",required = false) Integer i) {
+    public String findEmployer(@RequestParam(value = "firstName", required = false) String firstName,
+                               @RequestParam(value = "lastName") String lastName) {
         try {
-            employeeServiceImpl.findEmployee(i);
-            String str = employeeServiceImpl.findEmployee(i).toString();
-            return "пользователь под номером " + i + "\n" + str;
+            Employee employee = new Employee(firstName, lastName);
+            return employeeServiceImpl.findEmployee(employee);
         } catch (EmployeeNotFoundException e) {
-            return "Какая то ошибка под номером  " + i;
+            return "EmployeeNotFound";
+        }
+    }
+
+    @GetMapping(path = "/removeToNum")
+    public String removeToNumEmployer(@RequestParam(value = "num", required = false) Integer i) {
+        try {
+            employeeServiceImpl.removeToNumEmployee(i);
+            return "Успешно удален пользователем под номером " + i;
+        } catch (EmployeeNotFoundException e) {
+            return "EmployeeNotFound" + i;
         }
     }
 
     @GetMapping(path = "/remove")
-    public String removeEmployer(@RequestParam(value = "num",required = false) Integer i) {
+    public String removeEmployer(@RequestParam(value = "firstName", required = false) String firstName,
+                                 @RequestParam(value = "lastName") String lastName) {
         try {
-            employeeServiceImpl.removeEmployee(i);
-            return "Успешно удален пользователем под номером " + i;
+            Employee employee = new Employee(firstName, lastName);
+            return employeeServiceImpl.removeEmployee(employee);
         } catch (EmployeeNotFoundException e) {
-            return "Какая то ошибка под номером  " + i;
+            return "EmployeeNotFound";
         }
+    }
+
+    @GetMapping(path = "/all")
+    public String allEmployer() {
+        return employeeServiceImpl.allEmployee().toString();
     }
 
 }
