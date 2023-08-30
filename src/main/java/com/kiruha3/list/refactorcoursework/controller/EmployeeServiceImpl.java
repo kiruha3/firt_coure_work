@@ -25,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeInterface {
 
     @Override
     public void removeEmployee(Integer i) {
-        if (employeeService.employee.size() <= i) {
+        if (employeeService.employee.size() > i) {
            Employee removeEmpl = employeeService.employee.get(i);
            employeeService.employee.remove(removeEmpl);
         } else {
